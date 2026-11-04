@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" fill="none">
+  <!-- Classic Puppet - Hình Nhân Giấy Dân Gian -->
+  <ellipse cx="100" cy="225" rx="55" ry="10" fill="rgba(15,23,42,0.4)" />
+  <!-- Body -->
+  <path d="M60 115 C52 160 55 200 65 215 L135 215 C145 200 148 160 140 115 Z" fill="#1E293B" stroke="#0F172A" stroke-width="5" stroke-linejoin="round" />
+  <path d="M75 135 L125 135" stroke="#475569" stroke-width="3" stroke-dasharray="5 3" />
+  <path d="M72 165 L128 165" stroke="#475569" stroke-width="3" stroke-dasharray="5 3" />
+  <path d="M75 195 L125 195" stroke="#475569" stroke-width="3" stroke-dasharray="5 3" />
+  <!-- Arms -->
+  <path d="M60 130 C35 145 32 175 44 190 C52 182 52 165 65 155" fill="#334155" stroke="#0F172A" stroke-width="5" stroke-linecap="round" />
+  <path d="M140 130 C165 145 168 175 156 190 C148 182 148 165 135 155" fill="#334155" stroke="#0F172A" stroke-width="5" stroke-linecap="round" />
+  <!-- Head -->
+  <circle cx="100" cy="75" r="42" fill="#FDE047" stroke="#0F172A" stroke-width="5" />
+  <!-- Hair Tuft -->
+  <path d="M72 50 C85 28 115 28 128 50 Z" fill="#0F172A" />
+  <!-- Eyes -->
+  <circle cx="86" cy="74" r="6" fill="#FFFFFF" stroke="#0F172A" stroke-width="2.5" />
+  <circle cx="87" cy="74" r="2.8" fill="#0F172A" />
+  <circle cx="114" cy="74" r="6" fill="#FFFFFF" stroke="#0F172A" stroke-width="2.5" />
+  <circle cx="113" cy="74" r="2.8" fill="#0F172A" />
+  <!-- Eyebrows -->
+  <path d="M78 64 L92 68" stroke="#0F172A" stroke-width="3" stroke-linecap="round" />
+  <path d="M122 64 L108 68" stroke="#0F172A" stroke-width="3" stroke-linecap="round" />
+  <!-- Sneaky smile -->
+  <path d="M88 98 Q 100 90 112 98" stroke="#0F172A" stroke-width="3" stroke-linecap="round" fill="none" />
+  <!-- Label tag -->
+  <rect x="52" y="170" width="96" height="24" rx="6" fill="#0F172A" stroke="#F59E0B" stroke-width="2" />
+  <text x="100" y="186" text-anchor="middle" fill="#FDE047" font-size="9" font-weight="900" font-family="monospace">HÌNH NHÂN GIẤY</text>
+</svg>
+

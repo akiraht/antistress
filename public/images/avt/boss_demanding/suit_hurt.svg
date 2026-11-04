@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" fill="none">
+  <!-- Boss Demanding - Trùm Hứa Lèo -->
+  <ellipse cx="100" cy="225" rx="58" ry="10" fill="rgba(15,23,42,0.4)" />
+  <!-- Fat Belly Body -->
+  <path d="M55 115 C40 160 48 205 62 215 L138 215 C152 205 160 160 145 115 Z" fill="#475569" stroke="#0F172A" stroke-width="5" stroke-linejoin="round" />
+  <!-- Round Big Belly -->
+  <ellipse cx="100" cy="180" rx="36" ry="28" fill="#334155" stroke="#0F172A" stroke-width="3" />
+  <!-- Straining Buttons -->
+  <circle cx="100" cy="145" r="3" fill="#FACC15" stroke="#78350F" stroke-width="1.2" />
+  <circle cx="100" cy="165" r="3" fill="#FACC15" stroke="#78350F" stroke-width="1.2" />
+  <circle cx="100" cy="185" r="3" fill="#FACC15" stroke="#78350F" stroke-width="1.2" />
+  <!-- Arms -->
+  <path d="M55 130 C30 145 28 175 40 190 C48 182 48 165 60 155" fill="#475569" stroke="#0F172A" stroke-width="5" stroke-linecap="round" />
+  <path d="M145 130 C170 145 172 175 160 190 C152 182 152 165 140 155" fill="#475569" stroke="#0F172A" stroke-width="5" stroke-linecap="round" />
+  <!-- Head -->
+  <circle cx="100" cy="75" r="42" fill="#FDE047" stroke="#0F172A" stroke-width="5" />
+  <!-- Bald top head & sparse hair -->
+  <path d="M92 32 Q 100 24 108 32" stroke="#475569" stroke-width="2.5" fill="none" />
+  <path d="M84 35 Q 92 27 100 35" stroke="#475569" stroke-width="2.5" fill="none" />
+  <!-- Gray Hair on sides -->
+  <ellipse cx="58" cy="75" rx="6" ry="13" fill="#94A3B8" />
+  <ellipse cx="142" cy="75" rx="6" ry="13" fill="#94A3B8" />
+  <!-- Eyes -->
+  <circle cx="86" cy="72" r="5" fill="#FFFFFF" stroke="#0F172A" stroke-width="2.5" />
+  <circle cx="87" cy="72" r="2.5" fill="#0F172A" />
+  <circle cx="114" cy="72" r="5" fill="#FFFFFF" stroke="#0F172A" stroke-width="2.5" />
+  <circle cx="113" cy="72" r="2.5" fill="#0F172A" />
+  <!-- Eyebrows High -->
+  <path d="M78 60 Q 86 54 94 62" stroke="#0F172A" stroke-width="3" fill="none" />
+  <path d="M122 60 Q 114 54 106 62" stroke="#0F172A" stroke-width="3" fill="none" />
+  <!-- Classic Boss Mustache -->
+  <path d="M84 92 Q 100 86 116 92 Q 100 97 84 92 Z" fill="#1E293B" />
+  <!-- Mouth Smirk -->
+  <path d="M90 102 Q 100 98 110 102" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round" fill="none" />
+  <!-- Label tag -->
+  <rect x="52" y="200" width="96" height="22" rx="6" fill="#0F172A" stroke="#F59E0B" stroke-width="1.8" />
+  <text x="100" y="215" text-anchor="middle" fill="#FDE047" font-size="8.5" font-weight="900" font-family="monospace">TRÙM HỨA LÈO</text>
+
+  <!-- ================= BIẾN DẠNG MẮT VÀ MIỆNG BỊ ĐẬP TƠI BỜI ================= -->
+  <!-- Má trái sưng tím bầm -->
+  <ellipse cx="78" cy="82" rx="14" ry="10" fill="#EF4444" opacity="0.6" />
+  <circle cx="75" cy="80" r="6" fill="#991B1B" opacity="0.4" />
+
+  <!-- Băng gạc dán chéo má phải -->
+  <g transform="rotate(15, 125, 78)">
+    <rect x="115" y="75" width="20" height="8" rx="2" fill="#FCA5A5" stroke="#DC2626" stroke-width="1.5" />
+    <rect x="121" y="69" width="8" height="20" rx="2" fill="#FCA5A5" stroke="#DC2626" stroke-width="1.5" />
+  </g>
+
+  <!-- Mắt trái: Chữ X bầm dập -->
+  <line x1="80" y1="66" x2="94" y2="80" stroke="#DC2626" stroke-width="4.5" stroke-linecap="round" />
+  <line x1="94" y1="66" x2="80" y2="80" stroke="#DC2626" stroke-width="4.5" stroke-linecap="round" />
+
+  <!-- Mắt phải: Chữ X bầm dập -->
+  <line x1="108" y1="66" x2="122" y2="80" stroke="#DC2626" stroke-width="4.5" stroke-linecap="round" />
+  <line x1="122" y1="66" x2="108" y2="80" stroke="#DC2626" stroke-width="4.5" stroke-linecap="round" />
+
+  <!-- Miệng méo xệch há hốc đau đớn + răng sứt -->
+  <path d="M86 92 Q 100 115 116 95 Q 100 102 86 92 Z" fill="#991B1B" stroke="#450A0A" stroke-width="3" />
+  <rect x="92" y="92" width="5" height="5" fill="#FFFFFF" />
+  <rect x="103" y="94" width="5" height="5" fill="#FFFFFF" />
+
+  <!-- Nước mắt cá sấu bắn ra -->
+  <circle cx="70" cy="68" r="4" fill="#38BDF8" />
+  <circle cx="130" cy="68" r="4" fill="#38BDF8" />
+
+</svg>
+
