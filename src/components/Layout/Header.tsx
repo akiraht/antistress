@@ -1,5 +1,5 @@
 import React from 'react';
-import { Volume2, VolumeX } from 'lucide-react';
+import { Volume2, VolumeX, Download } from 'lucide-react';
 import { AppStepId } from '../../types/game';
 import { useTheme } from '../../contexts/ThemeContext';
 import { ThemeSwitcher } from '../Theme/ThemeSwitcher';
@@ -9,6 +9,8 @@ interface HeaderProps {
   isMuted: boolean;
   onToggleMute: () => void;
   onStepClick?: (step: AppStepId) => void;
+  onOpenInstallModal?: () => void;
+  isStandalone?: boolean;
 }
 
 const STEPS_NAV: { id: AppStepId; num: number; label: string }[] = [
@@ -17,7 +19,14 @@ const STEPS_NAV: { id: AppStepId; num: number; label: string }[] = [
   { id: 'fortune', num: 3, label: 'Quẻ May Mắn' },
 ];
 
-export const Header: React.FC<HeaderProps> = ({ currentStep, isMuted, onToggleMute, onStepClick }) => {
+export const Header: React.FC<HeaderProps> = ({
+  currentStep,
+  isMuted,
+  onToggleMute,
+  onStepClick,
+  onOpenInstallModal,
+  isStandalone = false,
+}) => {
   const { theme, themeConfig } = useTheme();
   const currentIdx = STEPS_NAV.findIndex((s) => s.id === currentStep);
 
@@ -33,9 +42,10 @@ export const Header: React.FC<HeaderProps> = ({ currentStep, isMuted, onToggleMu
         <div className="flex items-center gap-2">
           {/* Logo icon */}
           <div
-            className="w-8 h-8 rounded-xl flex items-center justify-center font-black text-white text-sm shadow-md select-none border"
+            className="w-8 h-8 rounded-xl flex items-center justify-center overflow-hidden shadow-md select-none border flex-shrink-0"
+            style={{ borderColor: themeConfig.border }}
           >
-            <img src="public/images/app.png" alt="logo" />
+            <img src="/images/app.png" alt="logo" className="w-full h-full object-cover" />
           </div>
           <div>
             <h1
@@ -45,7 +55,7 @@ export const Header: React.FC<HeaderProps> = ({ currentStep, isMuted, onToggleMu
               <span>ĐÁNH TIỂU NHÂN</span>
             </h1>
             <p
-              className="text-[10px] sm:text-[11px] font-semibold mt-1 leading-none truncate max-w-[150px] sm:max-w-none"
+              className="text-[10px] sm:text-[11px] font-semibold mt-1 leading-none truncate max-w-[140px] sm:max-w-none"
               style={{ color: themeConfig.textMuted }}
             >
               Phòng xả stress vui vẻ • Hả hê
@@ -53,8 +63,27 @@ export const Header: React.FC<HeaderProps> = ({ currentStep, isMuted, onToggleMu
           </div>
         </div>
 
-        {/* Right Tools: Theme Switcher Button + Step Pill + Sound Toggle */}
+        {/* Right Tools: Nút Cài App + Theme Switcher Button + Sound Toggle */}
         <div className="flex items-center gap-1.5">
+          {/* Nút Cài App PWA (nếu chưa cài vào máy) */}
+          {!isStandalone && onOpenInstallModal && (
+            <button
+              type="button"
+              onClick={onOpenInstallModal}
+              aria-label="Cài đặt App"
+              title="Cài đặt Ứng dụng vào máy (PWA)"
+              className="px-2 py-1.5 rounded-xl border transition active:scale-95 cursor-pointer shadow-sm flex items-center gap-1 text-[11px] font-bold"
+              style={{
+                backgroundColor: themeConfig.bgSubtle,
+                borderColor: themeConfig.primary,
+                color: themeConfig.primary,
+              }}
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Cài App</span>
+            </button>
+          )}
+
           {/* Nút chọn Style Color Theme */}
           <ThemeSwitcher />
 

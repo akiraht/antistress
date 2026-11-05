@@ -17,14 +17,19 @@ import { ResultCard } from './components/StressRelief/ResultCard';
 
 // Component Nạp VIP (đã tách riêng, tạm thời ẩn đi)
 import { VipUpgradeModal } from './components/VipUpgradeModal';
-// Modal hướng dẫn thêm vào màn hình chính cho iPhone
-import { IosInstallPromptModal } from './components/Pwa/IosInstallPromptModal';
+// Modal cài đặt PWA đa nền tảng (Android, iOS, Desktop)
+import { InstallModal } from './components/Pwa/InstallModal';
+import { usePwaInstall } from './components/Pwa/usePwaInstall';
 
 const MainApp: React.FC = () => {
   // Quản lý bước xả stress
   const [currentStep, setCurrentStep] = useState<AppStepId>('setup');
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
   const [isMuted, setIsMuted] = useState<boolean>(false);
+  const [isInstallModalOpen, setIsInstallModalOpen] = useState<boolean>(false);
+
+  // Hook PWA
+  const { isStandalone } = usePwaInstall();
 
   // VIP Modal state (tách component riêng, tạm thời ẩn đi)
   const [isVipModalOpen, setIsVipModalOpen] = useState<boolean>(false);
@@ -103,6 +108,8 @@ const MainApp: React.FC = () => {
         isMuted={isMuted}
         onToggleMute={handleToggleMute}
         onStepClick={(step) => !isCompleted && setCurrentStep(step)}
+        onOpenInstallModal={() => setIsInstallModalOpen(true)}
+        isStandalone={isStandalone}
       />
 
       {/* Nội dung chính */}
@@ -155,8 +162,11 @@ const MainApp: React.FC = () => {
         }}
       />
 
-      {/* Modal hướng dẫn Add to Home Screen cho iPhone */}
-      <IosInstallPromptModal />
+      {/* Modal cài đặt PWA (Android, iOS, Desktop) */}
+      <InstallModal
+        isOpen={isInstallModalOpen ? true : undefined}
+        onClose={() => setIsInstallModalOpen(false)}
+      />
     </MobileFrame>
   );
 };
