@@ -20,6 +20,8 @@ import { VipUpgradeModal } from './components/VipUpgradeModal';
 // Modal cài đặt PWA đa nền tảng (Android, iOS, Desktop)
 import { InstallModal } from './components/Pwa/InstallModal';
 import { usePwaInstall } from './components/Pwa/usePwaInstall';
+// Section giới thiệu văn hóa phong tục & cam kết lành mạnh
+import { CultureIntroModal, getTodayDateKey } from './components/StressRelief/CultureIntroModal';
 
 const MainApp: React.FC = () => {
   // Quản lý bước xả stress
@@ -30,6 +32,25 @@ const MainApp: React.FC = () => {
 
   // Hook PWA
   const { isStandalone } = usePwaInstall();
+
+  // Section giới thiệu văn hóa: Không mở nếu vào từ app PWA hoặc đã xem trong ngày hôm nay
+  const [isCultureIntroOpen, setIsCultureIntroOpen] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+
+    const isStandaloneMode =
+      window.matchMedia('(display-mode: standalone)').matches ||
+      (window.navigator as unknown as { standalone?: boolean }).standalone === true ||
+      document.referrer.includes('android-app://');
+    if (isStandaloneMode) return false;
+
+    try {
+      const today = getTodayDateKey();
+      const lastSeenDate = localStorage.getItem('dtn_culture_intro_date');
+      return lastSeenDate !== today;
+    } catch {
+      return false;
+    }
+  });
 
   // VIP Modal state (tách component riêng, tạm thời ẩn đi)
   const [isVipModalOpen, setIsVipModalOpen] = useState<boolean>(false);
@@ -124,6 +145,7 @@ const MainApp: React.FC = () => {
                 selectedTool={selectedTool}
                 onSelectTool={setSelectedTool}
                 onSubmit={handleSetupSubmit}
+                onOpenCultureIntro={() => setIsCultureIntroOpen(true)}
               />
             )}
 
@@ -166,6 +188,13 @@ const MainApp: React.FC = () => {
       <InstallModal
         isOpen={isInstallModalOpen ? true : undefined}
         onClose={() => setIsInstallModalOpen(false)}
+        isBlockedByIntro={isCultureIntroOpen}
+      />
+
+      {/* Section/Modal giới thiệu văn hóa & thông điệp xả stress */}
+      <CultureIntroModal
+        isOpen={isCultureIntroOpen}
+        onClose={() => setIsCultureIntroOpen(false)}
       />
     </MobileFrame>
   );

@@ -6,9 +6,14 @@ import { usePwaInstall } from './usePwaInstall';
 interface InstallModalProps {
   isOpen?: boolean;
   onClose?: () => void;
+  isBlockedByIntro?: boolean;
 }
 
-export const InstallModal: React.FC<InstallModalProps> = ({ isOpen: controlledIsOpen, onClose }) => {
+export const InstallModal: React.FC<InstallModalProps> = ({
+  isOpen: controlledIsOpen,
+  onClose,
+  isBlockedByIntro = false,
+}) => {
   const { themeConfig } = useTheme();
   const { canInstall, isStandalone, isIos, isAndroid, isInAppBrowser, promptInstall } = usePwaInstall();
   const [internalOpen, setInternalOpen] = useState<boolean>(false);
@@ -18,8 +23,8 @@ export const InstallModal: React.FC<InstallModalProps> = ({ isOpen: controlledIs
   const isVisible = isControlled ? controlledIsOpen : internalOpen;
 
   useEffect(() => {
-    // Nếu đã ở chế độ standalone (đã cài) thì không tự động mở
-    if (isStandalone) return;
+    // Nếu đã ở chế độ standalone (đã cài) hoặc đang mở màn hình giới thiệu văn hóa thì không tự động mở
+    if (isStandalone || isBlockedByIntro) return;
 
     // Kiểm tra nếu đã đóng trong vòng 2 ngày
     const dismissedAt = localStorage.getItem('dtn_pwa_install_dismissed');
@@ -27,13 +32,13 @@ export const InstallModal: React.FC<InstallModalProps> = ({ isOpen: controlledIs
       dismissedAt && Date.now() - parseInt(dismissedAt, 10) < 2 * 24 * 60 * 60 * 1000;
 
     if (!isRecentlyDismissed && !isControlled) {
-      // Trì hoãn 2 giây để người dùng làm quen giao diện trước
+      // Trì hoãn 3 giây sau khi người dùng vào app
       const timer = setTimeout(() => {
         setInternalOpen(true);
-      }, 2000);
+      }, 3000);
       return () => clearTimeout(timer);
     }
-  }, [isStandalone, isControlled]);
+  }, [isStandalone, isControlled, isBlockedByIntro]);
 
   const handleDismiss = () => {
     if (isControlled && onClose) {

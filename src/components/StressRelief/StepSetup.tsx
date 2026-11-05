@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, ShieldCheck, Smile, Sparkles, User, Zap, Users, ChevronDown } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Smile, Sparkles, User, Zap, Users, ChevronDown, BookOpen } from 'lucide-react';
 import { PlayerProfile, ToolConfig, CharacterStyleId } from '../../types/game';
 import { STRESS_TARGET_PRESETS, CHARACTER_STYLES } from '../../constants/stressRelief';
 import { HITTING_TOOLS } from '../../constants/tools';
@@ -12,6 +12,7 @@ interface StepSetupProps {
   selectedTool: ToolConfig;
   onSelectTool: (tool: ToolConfig) => void;
   onSubmit: (profile: PlayerProfile) => void;
+  onOpenCultureIntro?: () => void;
 }
 
 export const StepSetup: React.FC<StepSetupProps> = ({
@@ -19,6 +20,7 @@ export const StepSetup: React.FC<StepSetupProps> = ({
   selectedTool,
   onSelectTool,
   onSubmit,
+  onOpenCultureIntro,
 }) => {
   const { theme, themeConfig } = useTheme();
   const [nickname, setNickname] = useState(initialProfile.nickname || 'Chiến Thần Xả Stress');
@@ -46,16 +48,35 @@ export const StepSetup: React.FC<StepSetupProps> = ({
     <div className="flex-1 flex flex-col justify-between p-4 sm:p-5">
       {/* Header section with solid theme colors */}
       <div className="text-center space-y-1 mb-2">
-        <div
-          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold tracking-wide border"
-          style={{
-            backgroundColor: themeConfig.bgSubtle,
-            borderColor: themeConfig.primary,
-            color: themeConfig.primary,
-          }}
-        >
-          <Smile className="w-3.5 h-3.5" />
-          <span>PHÒNG XẢ STRESS • 10 GIÂY HẢ HÊ</span>
+        <div className="flex flex-wrap items-center justify-center gap-1.5">
+          <div
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold tracking-wide border"
+            style={{
+              backgroundColor: themeConfig.bgSubtle,
+              borderColor: themeConfig.primary,
+              color: themeConfig.primary,
+            }}
+          >
+            <Smile className="w-3.5 h-3.5" />
+            <span>PHÒNG XẢ STRESS • 10 GIÂY HẢ HÊ</span>
+          </div>
+
+          {onOpenCultureIntro && (
+            <button
+              type="button"
+              onClick={onOpenCultureIntro}
+              title="Tìm hiểu phong tục & cam kết lành mạnh"
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold border transition hover:opacity-90 active:scale-95 cursor-pointer"
+              style={{
+                backgroundColor: themeConfig.bgSubtle,
+                borderColor: themeConfig.border,
+                color: themeConfig.secondary,
+              }}
+            >
+              <BookOpen className="w-3 h-3" />
+              <span>Văn hóa &amp; Ý nghĩa</span>
+            </button>
+          )}
         </div>
         <h2
           className="text-xl sm:text-2xl font-black tracking-[-0.03em] leading-tight"

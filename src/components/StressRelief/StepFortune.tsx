@@ -27,7 +27,7 @@ export const StepFortune: React.FC<StepFortuneProps> = ({ onComplete }) => {
   };
 
   return (
-    <div className="flex-1 flex flex-col justify-between p-4 sm:p-5 text-center">
+    <div className="flex-1 flex flex-col p-4 sm:p-5 text-center">
       {/* Header section - Solid Colors */}
       <div className="space-y-1">
         <div
@@ -45,7 +45,7 @@ export const StepFortune: React.FC<StepFortuneProps> = ({ onComplete }) => {
           className="text-xl sm:text-2xl font-black tracking-[-0.03em] leading-tight"
           style={{ color: themeConfig.textMain }}
         >
-          Thổi Bay Tiêu Cực • Nạp Lại Năng Lượng
+          Thổi Bay Tiêu Cực<br />Nạp Lại Năng Lượng
         </h2>
         <p
           className="text-xs max-w-sm mx-auto leading-relaxed font-medium"
@@ -56,7 +56,7 @@ export const StepFortune: React.FC<StepFortuneProps> = ({ onComplete }) => {
       </div>
 
       {/* Interactive Fortune Cookie Stage - Solid Color */}
-      <div className="my-3 flex flex-col items-center justify-center">
+      <div className="mb-3 mt-6 flex flex-col items-center justify-center">
         {!fortune ? (
           <div
             className="relative w-56 h-56 rounded-3xl border-3 p-4 flex flex-col items-center justify-center transition-all shadow-md"
@@ -166,7 +166,7 @@ export const StepFortune: React.FC<StepFortuneProps> = ({ onComplete }) => {
       </div>
 
       {/* Action CTA - Solid Color */}
-      <div className="space-y-2.5">
+      <div className="space-y-2.5 mt-auto">
         {!fortune ? (
           <button
             type="button"
@@ -198,7 +198,7 @@ export const StepFortune: React.FC<StepFortuneProps> = ({ onComplete }) => {
         )}
 
         <div className="text-[11px] font-semibold" style={{ color: themeConfig.textMuted }}>
-          {fortune ? '✓ Năng lượng tích cực đã đầy ắp!' : 'Bấm nút hoặc chạm vào bánh để mở thông điệp'}
+          {fortune ? '✓ Năng lượng tích cực đã đầy ắp!' : ''}
         </div>
       </div>
     </div>
