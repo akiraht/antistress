@@ -6,6 +6,7 @@ import { HITTING_TOOLS } from '../../constants/tools';
 import { WeaponSvg } from '../WeaponSvg';
 import { encodeTargetName } from '../../utils/crypto';
 import { useTheme } from '../../contexts/ThemeContext';
+import { COMIC_CHARACTER_MAP, isComicTheme } from '../ComicStyle';
 
 interface StepSetupProps {
   initialProfile: PlayerProfile;
@@ -210,14 +211,21 @@ export const StepSetup: React.FC<StepSetupProps> = ({
                     borderColor: themeConfig.border,
                   }}
                 >
-                  <img
-                    src={`/images/avt/${characterStyle}/suit.svg`}
-                    alt={selectedStyleConfig.name}
-                    className="w-full h-full object-contain filter drop-shadow-md transition-transform duration-300 group-hover:scale-105"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src = `/images/avt/${characterStyle}.svg`;
-                    }}
-                  />
+                  {isComicTheme(theme) && COMIC_CHARACTER_MAP[characterStyle] ? (
+                    (() => {
+                      const ComicSvg = COMIC_CHARACTER_MAP[characterStyle];
+                      return <ComicSvg isHurt={false} className="w-full h-full object-contain filter drop-shadow-md transition-transform duration-300 group-hover:scale-105" />;
+                    })()
+                  ) : (
+                    <img
+                      src={`/images/avt/${characterStyle}/suit.svg`}
+                      alt={selectedStyleConfig.name}
+                      className="w-full h-full object-contain filter drop-shadow-md transition-transform duration-300 group-hover:scale-105"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).src = `/images/avt/${characterStyle}.svg`;
+                      }}
+                    />
+                  )}
                 </div>
               </div>
             </div>

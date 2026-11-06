@@ -1,4 +1,6 @@
-export type ThemeId = 'dark' | 'light';
+import { COMIC_THEME } from '../components/ComicStyle';
+
+export type ThemeId = 'comic' | 'dark' | 'light';
 
 export interface ThemeColors {
   id: ThemeId;
@@ -22,6 +24,8 @@ export interface ThemeColors {
 }
 
 export const THEMES: Record<ThemeId, ThemeColors> = {
+  // Theme Mặc Định Mới: Phong cách Truyện Tranh Cổ Phong Trào Phúng
+  comic: COMIC_THEME,
   dark: {
     id: 'dark',
     name: 'Tối (Dark)',

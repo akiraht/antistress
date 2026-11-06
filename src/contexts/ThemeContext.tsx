@@ -11,13 +11,16 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 const STORAGE_KEY = 'dtn_app_theme';
-const DEFAULT_THEME: ThemeId = 'dark';
+const DEFAULT_THEME: ThemeId = 'comic';
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setThemeState] = useState<ThemeId>(() => {
     if (typeof window !== 'undefined') {
       try {
         const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved === 'comic') {
+          return 'comic';
+        }
         if (saved === 'dark' || saved === 'crazy_arcade') {
           return 'dark';
         }
@@ -43,7 +46,9 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   const toggleTheme = () => {
-    const nextTheme: ThemeId = theme === 'dark' ? 'light' : 'dark';
+    const cycle: ThemeId[] = ['comic', 'dark', 'light'];
+    const currentIndex = cycle.indexOf(theme);
+    const nextTheme = cycle[(currentIndex + 1) % cycle.length];
     setTheme(nextTheme);
   };
 

@@ -1,5 +1,7 @@
 import React, { useMemo } from 'react';
 import { ComboLevelKey, CharacterStyleId } from '../types/game';
+import { useTheme } from '../contexts/ThemeContext';
+import { ComicCharacterView, isComicTheme } from './ComicStyle';
 
 interface Character2DProps {
   encodedName: string;
@@ -19,6 +21,22 @@ export const Character2D: React.FC<Character2DProps> = ({
   characterStyle = 'office_suit',
   impactOffset = { x: 0, y: 0 },
 }) => {
+  const { theme } = useTheme();
+
+  // NẾU ĐANG CHỌN STYLE TRUYỆN TRANH (COMIC): Sử dụng component độc lập ComicCharacterView
+  if (isComicTheme(theme)) {
+    return (
+      <ComicCharacterView
+        encodedName={encodedName}
+        currentCombo={currentCombo}
+        hitPulseKey={hitPulseKey}
+        isCompleted={isCompleted}
+        characterStyle={characterStyle}
+        impactOffset={impactOffset}
+      />
+    );
+  }
+
   const isReacting = hitPulseKey > 0 && currentCombo > 0;
 
   // Khi bị đập liên tục (combo >= 6) hoặc khi vừa trúng đòn hoặc đã hoàn thành => Chuyển sang ảnh suit_hurt.svg
